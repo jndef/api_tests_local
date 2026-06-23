@@ -1,4 +1,3 @@
-from dotenv.variables import Literal
 from faker import Faker
 
 fake = Faker()
@@ -31,7 +30,3 @@ class Payloads:
             payload["content"] = content
 
         return payload
-        return {
-            "repost_type": repost_type,
-            "content": content
-        }

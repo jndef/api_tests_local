@@ -57,6 +57,6 @@ class Credentials:
         )
 
 
-    def get_user_id_by_elias(self, elias:str):
-        elias = self.role_checker(update_role=elias)
-        return self._roles_info[elias]
+    # def get_user_id_by_elias(self, elias:str):
+    #     elias = self.role_checker(update_role=elias)
+    #     return self._roles_info[elias]

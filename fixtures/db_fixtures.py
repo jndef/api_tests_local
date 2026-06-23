@@ -103,7 +103,6 @@ def get_participant_id(request):
         participant = fake.uuid4()
         print(f"participant: {participant}")
         yield participant
-        yield user_id
     if case_info["case"]  == "invalid_uuid":
         yield "10AZ000-0Z0-0Z0-0Z0-00a00000003"
     elif case_info["case"] == "not_existed":
