@@ -6,10 +6,20 @@ services:
         dockerfile: Dockerfile # указание докер файла, на котором создастся образ
       volumes:
         - ./:/usr/workspace # <local_folder>:<container_folder>
-      command: /bin/sh -c "STAGE=$$STAGE pytest -n=3 -m=$$SUITE -o log_cli=true"  # переменная будет равна значению из environment
+      command: /bin/sh -c "STAGE=$$STAGE pytest -n=$$THREADS -m=$$SUITE -o log_cli=true"  # переменная будет равна значению из environment
       env_file:
         - .env
       environment:
           STAGE: ${STAGE}  # внутри контейнера переменная окружения будет приниматься извне
           SUITE: ${SUITE:-smoke}
+          THREADS: ${THREADS:-1}
       tty: true
+    report:
+      image: api:v1
+      build:
+        context: .
+        dockerfile: Dockerfile
+      volumes:
+        - ./:/usr/workspace
+      command: /bin/sh -c "ls -la && allure generate allure-results --clean -o allure-report"
+      working_dir: /usr/workspace
