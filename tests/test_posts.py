@@ -88,10 +88,10 @@ class TestPosts(BaseTest):
     @allure.description("Create post - valid payload")
     @pytest.mark.parametrize("post_body_data", [
         pytest.param(({"payload":{"content": "A", "visibility": "public", "image_url": None}, "expected_success":True, "status_code":201}), id="Valid minimal boundary + default visibility"),
-        pytest.param(({"payload":{"content": "A" * 2000, "image_url": "temp_data/image.png", "visibility": "followers_only"}, "expected_success":True, "status_code":201}), id="valid max boundary + explicit followers_only + image"),
+        pytest.param(({"payload":{"content": "A" * 2000, "image_url": "test_data/image.png", "visibility": "followers_only"}, "expected_success":True, "status_code":201}), id="valid max boundary + explicit followers_only + image"),
         pytest.param(({"payload": {"content": "Another valid post", "visibility": "followers_only", "image_url": None},
                        "expected_success": True, "status_code": 201}), id="valid followers_only without image"),
-        pytest.param(({"payload": {"content": "Image post", "image_url": "temp_data/image.jpg", "visibility": "public"},
+        pytest.param(({"payload": {"content": "Image post", "image_url": "test_data/image.jpg", "visibility": "public"},
                        "expected_success": True, "status_code": 201}), id="valid public with image"),
         pytest.param(({"payload": {"content": "Default visibility post", "visibility": "public"},
                        "expected_success": True, "status_code": 201}), id="optional image_url omitted + default visibility"),
@@ -266,7 +266,7 @@ class TestPosts(BaseTest):
         # pytest.param({"create_by": "user_eve"},{"user": "user_eve", "payload": {"content": "Valid post content", "visibility": "followers_only"},
         #               "expected_success": True, "status_code": 200},
         #     id="Update visibility parameter"),
-        # pytest.param({"create_by": "user_eve"}, {"user": "user_eve", "payload": {"content": "Valid post content","image_url": "temp_data/image.jpg"},
+        # pytest.param({"create_by": "user_eve"}, {"user": "user_eve", "payload": {"content": "Valid post content","image_url": "test_data/image.jpg"},
         #                                          "expected_success": True, "status_code": 200},
         #     id="Update image parameter"),
     ], indirect=["create_post_remove"])
